@@ -1,0 +1,98 @@
+<html>
+<style>
+body.cams {
+	background-color: #666;
+}
+.pic {
+	width: 100%;
+}
+.pics.row {
+	border-bottom: 1px solid #444;
+}
+.footer {
+	text-align: center;
+	padding-bottom: 0.5em;
+	font-weight: bold;
+}
+.row h2 {
+	font-weight: 900;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script>
+var pics = [
+{ 
+	title: "Base",
+	urls: [ 
+		"http://www.chapelco.com/camaras/cambase2.jpg",
+		"http://www.chapelco.com/camaras/cambase1.jpg", 
+		"http://www.chapelco.com/camaras/camranin.jpg"
+	],
+	footers: [ "Base @ 1200", "Base-Hyundai @ 1200", "Rancho @ 1300" ]
+},
+{ 
+	title: "Intermedia",
+	urls: [ 
+		"http://www.chapelco.com/camaras/1600telehd.jpg",
+		"http://www.chapelco.com/camaras/cam1600i.jpg",
+		"http://www.chapelco.com/camaras/snowpark.jpg"
+	],
+	footers: [ "", "Silla 63 @ 1600", "Snowpark @ 1650" ] 
+},
+{ 
+	title: "1700",
+	urls: [ 
+		"http://www.chapelco.com/camaras/c-1700rg.jpg",
+		"http://www.chapelco.com/camaras/c-160063d.jpg",
+		"http://www.chapelco.com/camaras/c-1700p1.jpg",
+		"http://www.chapelco.com/camaras/c-1700p2.jpg",
+		"http://www.chapelco.com/camaras/pradera1.jpg"
+	],
+	footers: [ null, "Desenganche Silla 63 hacia Antulauquen", 
+		"Palito Graeff @ 1700", "Desenganche Rancho Grande @ 1700", 
+		"Pradera" ]
+},
+{ 
+	title: "Teta",
+	urls: [ 
+		"http://www.chapelco.com/camaras/c-2000at.jpg",
+		"http://www.chapelco.com/camaras/c-2000te.jpg" 
+	]
+},
+{ 
+	title: "Filo",
+	urls: [ 
+		"http://www.chapelco.com/camaras/camfilo.jpg" 
+	]
+}
+]
+</script>
+<body class="cams">
+	<div id="container" class="container-fluid">
+	</div>
+</body>
+<script>
+	var container = $("#container");
+	for (var i=0; i<pics.length; i++) {
+		var title = pics[i].title, urls = pics[i].urls, footers = pics[i].footers;
+		console.log(i, title, urls);
+		var row = $('<div class="row"><div class="col-sm-12"><h2>'+title+'</h2></div></div>');
+		container.append(row);
+		row = $("<div/>").addClass("pics row");
+		for (var j=0; j<urls.length; j++) {
+			var cell = $('<div>').addClass("col-sm-6 col-lg-4");
+			var img = $('<img>').attr({src: urls[j]}).addClass("pic");
+			var text = (footers && footers[j]) || "";
+			var footer = $('<div class="footer">'+text+"</div>");
+			cell.append(img);
+			cell.append(footer);
+			row.append(cell);
+		}
+		container.append(row);
+		console.log(row);
+	}
+</script>
+</html>
